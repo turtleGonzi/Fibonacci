@@ -43,6 +43,7 @@ const mergeSort = function (arr) {
   }
 
   const merge = function () {
+    console.log("This was printed recursively");
     const result = [];
     const length = leftSide?.length + rightSide?.length;
     for (let i = 0; i < length; i++) {
