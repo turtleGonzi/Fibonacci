@@ -30,3 +30,37 @@ const fibsRec = function (num) {
 };
 
 console.log(fibsRec(8));
+
+const mergeSort = function (arr) {
+  if (arr.length === 1) {
+    return arr;
+  }
+  const leftSide = mergeSort(arr.slice(0, Math.floor(arr.length / 2)));
+  const rightSide = mergeSort(arr.slice(Math.floor(arr.length / 2)));
+
+  if (!rightSide?.length || !leftSide?.length) {
+    return rightSide || leftSide;
+  }
+
+  const merge = function () {
+    const result = [];
+    const length = leftSide?.length + rightSide?.length;
+    for (let i = 0; i < length; i++) {
+      if (
+        leftSide[0] > rightSide[0] ||
+        leftSide[0] === undefined ||
+        leftSide[0] === rightSide[0]
+      ) {
+        result.push(rightSide[0]);
+        rightSide.splice(0, 1);
+      } else if (rightSide[0] > leftSide[0] || rightSide[0] === undefined) {
+        result.push(leftSide[0]);
+        leftSide.splice(0, 1);
+      }
+    }
+    return result;
+  };
+  return merge();
+};
+
+console.log(mergeSort([3, 2, 1, 13, 8, 5, 0, 1]));
